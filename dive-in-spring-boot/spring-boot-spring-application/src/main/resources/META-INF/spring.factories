@@ -1,0 +1,14 @@
+# ApplicationContextInitializer 实现配置
+org.springframework.context.ApplicationContextInitializer=\
+com.radiance.diveinspringboot.context.AfterHelloWorldApplicationContextInitializer,\
+com.radiance.diveinspringboot.context.HelloWorldApplicationContextInitializer
+
+# ApplicationListener 实现配置
+org.springframework.context.ApplicationListener=\
+com.radiance.diveinspringboot.listener.AfterHelloWorldApplicationListener,\
+com.radiance.diveinspringboot.listener.HelloWorldApplicationListeners,\
+com.radiance.diveinspringboot.listener.BeforeConfigFileApplicationListener
+
+# SpringApplicationRunListener 实现配置
+org.springframework.boot.SpringApplicationRunListener=\
+com.radiance.diveinspringboot.run.HelloWorldRunListener

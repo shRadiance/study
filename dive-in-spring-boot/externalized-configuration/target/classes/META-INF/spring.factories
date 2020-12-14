@@ -1,0 +1,15 @@
+# Run Listeners
+org.springframework.boot.SpringApplicationRunListener=\
+com.radiance.diveinspringboot.externalized.configuration.listener.ExtendPropertySourcesRunListener
+
+# Event Listeners
+org.springframework.context.ApplicationListener=\
+com.radiance.diveinspringboot.externalized.configuration.listener.ExtendPropertySourcesEventListener
+
+# EnvironmentPostProcessor
+org.springframework.boot.env.EnvironmentPostProcessor=\
+com.radiance.diveinspringboot.externalized.configuration.processor.ExtendPropertySourcesEnvironmentPostProcessor
+
+# ApplicationContextInitializer
+org.springframework.context.ApplicationContextInitializer=\
+com.radiance.diveinspringboot.externalized.configuration.initializer.ExtendPropertySourcesApplicationContextInitializer

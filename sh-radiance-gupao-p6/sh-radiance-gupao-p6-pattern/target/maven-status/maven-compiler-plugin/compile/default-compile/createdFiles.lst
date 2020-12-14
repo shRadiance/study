@@ -1,0 +1,17 @@
+com\radiance\gupao\p6\pattern\singleton\lazy\LazyInnerClassSingletonTest.class
+com\radiance\gupao\p6\pattern\singleton\hungry\HungrySingleton.class
+com\radiance\gupao\p6\pattern\singleton\register\EnumSingleton.class
+com\radiance\gupao\p6\pattern\singleton\lazy\LazyInnerClassSingleton2$1.class
+com\radiance\gupao\p6\pattern\singleton\lazy\ExectorThread.class
+com\radiance\gupao\p6\pattern\singleton\lazy\LazyInnerClassSingleton$LazyHolder.class
+com\radiance\gupao\p6\pattern\singleton\lazy\LazyDoubleCheckSingleton.class
+com\radiance\gupao\p6\pattern\singleton\seriable\SeriableSingleton.class
+com\radiance\gupao\p6\pattern\singleton\seriable\SeriableSingletonTest.class
+com\radiance\gupao\p6\pattern\singleton\hungry\HungryStaticSingleton.class
+com\radiance\gupao\p6\pattern\singleton\lazy\LazyInnerClassSingleton.class
+com\radiance\gupao\p6\pattern\singleton\register\EnumSingletonTest.class
+com\radiance\gupao\p6\pattern\singleton\lazy\LazyInnerClassSingleton2$LazyHolder.class
+com\radiance\gupao\p6\pattern\singleton\lazy\LazySimpleSingleton.class
+com\radiance\gupao\p6\pattern\singleton\lazy\LazySimpleSingletonTest.class
+com\radiance\gupao\p6\pattern\singleton\lazy\LazyInnerClassSingleton$1.class
+com\radiance\gupao\p6\pattern\singleton\lazy\LazyInnerClassSingleton2.class

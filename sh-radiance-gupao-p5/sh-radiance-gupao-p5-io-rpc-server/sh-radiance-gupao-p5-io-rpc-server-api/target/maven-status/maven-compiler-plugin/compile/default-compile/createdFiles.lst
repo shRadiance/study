@@ -1,0 +1,3 @@
+com\radiance\gupao\p5\io\rpc\server\api\IHelloService.class
+com\radiance\gupao\p5\io\rpc\server\api\RpcRequest.class
+com\radiance\gupao\p5\io\rpc\server\api\App.class

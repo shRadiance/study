@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="sh-radiance-gupao-p5-io-rpc-server-api" />
+        <module name="sh-radiance-gupao-p5-io-rpc-server-provider" />
+        <module name="sh-radiance-gupap-p5-reflect" />
+        <module name="sh-radiance-gupao-p5-io-rpc-client" />
+        <module name="sh-radiance-gupao-p5-genericity" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

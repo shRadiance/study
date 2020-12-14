@@ -1,0 +1,17 @@
+server:
+  port: 9090
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  server:
+    eviction-interval-timer-in-ms: 5000
+    peer-node-read-timeout-ms: 10000
+  client:
+    service-url:
+      defaultZone:  http://localhost:9090/eureka
+    fetch-registry: false
+    register-with-eureka: false
+#  dashboard:
+#    enabled: true
+#    path: /eindex

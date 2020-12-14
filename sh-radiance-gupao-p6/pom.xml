@@ -15,11 +15,11 @@
     </modules>
 
     <!--
-此处规定了
-1  项目JDK版本号
-2  spring boot 版本
-3  spring cloud 版本
--->
+    此处规定了
+    1  项目JDK版本号
+    2  spring boot 版本
+    3  spring cloud 版本
+    -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

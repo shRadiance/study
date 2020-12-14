@@ -11,5 +11,6 @@ public class Test {
         System.out.println(work);
         Worker.printf(work);
         System.out.println(work.hashCode());
+        System.out.println("test");
     }
 }

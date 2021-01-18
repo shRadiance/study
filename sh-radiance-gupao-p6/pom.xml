@@ -12,6 +12,7 @@
         <module>sh-radiance-gupao-p6-pattern</module>
         <module>sh-radiance-gupao-p6-springcloud</module>
         <module>sh-radiance-algorithm</module>
+        <module>sh-radiance-gupao-p6-elastic-job</module>
     </modules>
 
     <!--

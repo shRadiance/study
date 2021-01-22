@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.radiance.seata.b.mapper.StaffMapper">
+
+    <select id="select" parameterType="com.radiance.seata.b.bean.dao.StaffDAO" resultType="com.radiance.seata.b.bean.dao.StaffDAO">
+        select * from staff where 1=1
+        <if test="id != null and id != ''">
+            and id = #{id}
+        </if>
+        <if test="sex != null">
+            and sex = #{sex}
+        </if>
+        <if test="name != null and name != ''">
+            and name = #{name}
+        </if>
+    </select>
+
+    <insert id="insert" parameterType="java.util.List">
+        insert into staff (id, sex, name) values
+        <foreach collection="staffDAOList" item="staff" separator="," close=";">
+            (#{staff.id}, #{staff.sex}, #{staff.name})
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="java.util.List">
+        <foreach collection="staffDAOList" item="staff" index="index" open="" close="" separator=",">
+            update staff
+            <set>
+                <if test="staff.sex != null">
+                    sex = #{staff.sex},
+                </if>
+                <if test="staff.name != null and staff.name != ''">
+                    name = #{staff.name},
+                </if>
+            </set>
+            where id = #{staff.id}
+        </foreach>
+    </update>
+
+    <delete id="delete" parameterType="java.util.List">
+        delete from staff where id in
+        <foreach collection="staffDAOList" item="staff" separator="," open="(" close=")">
+            #{staff.id}
+        </foreach>
+    </delete>
+
+</mapper>

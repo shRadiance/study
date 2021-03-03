@@ -52,13 +52,23 @@ public class AServiceImpl implements AService {
     @Override
     public int update(List<StaffDAO> staffDAOList) {
 
+//        int resulta = this.updatea(staffDAOList);
+//        System.out.println(resulta);
+        staffDAOList.get(0).setName("testyuan");
         int result = staffMapper.update(staffDAOList);
         // 手动强制回滚事务
-        TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//        TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         // 设置回滚点，手工回滚异常
-        Object savePoint = TransactionAspectSupport.currentTransactionStatus().createSavepoint();
-        TransactionAspectSupport.currentTransactionStatus().rollbackToSavepoint(savePoint);
+//        Object savePoint = TransactionAspectSupport.currentTransactionStatus().createSavepoint();
+//        TransactionAspectSupport.currentTransactionStatus().rollbackToSavepoint(savePoint);
         log.info("AServiceImpl.update() result:{}", result);
+        return result;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public int updatea(List<StaffDAO> staffDAOList) {
+        staffDAOList.get(0).setName("test");
+        int result = staffMapper.update(staffDAOList);
         return result;
     }
 

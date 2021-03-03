@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static java.util.Arrays.asList;
 import static org.apache.commons.lang.StringUtils.substringAfter;
@@ -44,6 +45,7 @@ public class FrontControllerServlet extends HttpServlet {
      *
      * @param servletConfig
      */
+    @Override
     public void init(ServletConfig servletConfig) {
         initHandleMethods();
     }
@@ -53,11 +55,18 @@ public class FrontControllerServlet extends HttpServlet {
      * 利用 ServiceLoader 技术（Java SPI）
      */
     private void initHandleMethods() {
+//        try {
+//            TimeUnit.SECONDS.sleep(5);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        System.out.println("initHandleMethods start");
         for (Controller controller : ServiceLoader.load(Controller.class)) {
             Class<?> controllerClass = controller.getClass();
             Path pathFromClass = controllerClass.getAnnotation(Path.class);
             String requestPath = pathFromClass.value();
-            Method[] publicMethods = controllerClass.getMethods();
+//            Method[] publicMethods = controllerClass.getMethods();
+            Method[] publicMethods = controllerClass.getDeclaredMethods();
             // 处理方法支持的 HTTP 方法集合
             for (Method method : publicMethods) {
                 Set<String> supportedHttpMethods = findSupportedHttpMethods(method);
@@ -70,6 +79,7 @@ public class FrontControllerServlet extends HttpServlet {
             }
             controllersMapping.put(requestPath, controller);
         }
+        System.out.println("initHandleMethods end");
     }
 
     /**
@@ -150,6 +160,26 @@ public class FrontControllerServlet extends HttpServlet {
                         return;
                     } else if (controller instanceof RestController) {
                         // TODO
+                        // 此处用反射调用到对应的方法里面
+                        Class clazz =  controller.getClass();
+                        // 参数先不解析，无参条件下--这个方法名称就不对
+//                        Method method = clazz.getDeclaredMethod()
+//                        Method method = handlerMethodInfo.getHandlerMethod();
+                        Method method = clazz.getDeclaredMethod(handlerMethodInfo.getHandlerMethod().getName());
+                        Object result = method.invoke(controller.getClass());
+                        System.out.println(result);
+//                        Controller controller1 = controllersMapping.get(requestURI);
+//                        HandlerMethodInfo methodInfo = handleMethodInfoMapping.get(requestURI);
+//                        RestController restController = RestController.class.cast(controller);
+//                        ServletContext servletContext = request.getServletContext();
+
+//                        if (!viewPath.startsWith("/")) {
+//                            viewPath = "/" + viewPath;
+//                        }
+//                        System.out.println("进入到RestController");
+//                        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(requestURI);
+//                        requestDispatcher.forward(request, response);
+                        return;
                     }
 
                 }
@@ -174,4 +204,5 @@ public class FrontControllerServlet extends HttpServlet {
 //            writer.write(headers, cacheControl.value());
 //        }
 //    }
+
 }

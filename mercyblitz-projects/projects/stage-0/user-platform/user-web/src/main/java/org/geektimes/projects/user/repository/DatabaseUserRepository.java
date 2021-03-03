@@ -43,7 +43,13 @@ public class DatabaseUserRepository implements UserRepository {
 
     @Override
     public boolean save(User user) {
-        return false;
+        int result = executeInsert(QUERY_ALL_USERS_DML_SQL,
+                COMMON_EXCEPTION_HANDLER,
+                user.getName(),
+                user.getPassword(),
+                user.getEmail(),
+                user.getPhoneNumber());
+        return result == 1 ? true : false;
     }
 
     @Override
@@ -135,6 +141,45 @@ public class DatabaseUserRepository implements UserRepository {
             exceptionHandler.accept(e);
         }
         return null;
+    }
+
+    /**
+     * 插入数据库记录
+     *
+     * @param sql
+     * @param exceptionHandler
+     * @param args
+     * @author sunhao
+     * @date 2021/3/2 23:03
+     */
+    protected int executeInsert(String sql,
+                                 Consumer<Throwable> exceptionHandler, Object... args) {
+        Connection connection = getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++) {
+                Object arg = args[i];
+                Class argType = arg.getClass();
+
+                Class wrapperType = wrapperToPrimitive(argType);
+
+                if (wrapperType == null) {
+                    wrapperType = argType;
+                }
+
+                // Boolean -> boolean
+                String methodName = preparedStatementMethodMappings.get(argType);
+                Method method = PreparedStatement.class.getMethod(methodName, wrapperType);
+                method.invoke(preparedStatement, i + 1, args);
+            }
+            int result = preparedStatement.executeUpdate();
+            // 返回一个 POJO List -> ResultSet -> POJO List
+            // ResultSet -> T
+            return result;
+        } catch (Throwable e) {
+            exceptionHandler.accept(e);
+        }
+        return 0;
     }
 
 

@@ -52,6 +52,24 @@ public class DBConnectionManager {
             "('E','******','e@gmail.com','5')";
 
 
+    public int insertUser(User user) {
+        int resultSet = 0;
+        try {
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            String databaseURL = "jdbc:derby:/db/user-platform;create=true";
+            Connection connection = DriverManager.getConnection(databaseURL);
+            Statement statement = connection.createStatement();
+            String sql = String.format("INSERT INTO users(name,password,email,phoneNumber) VALUES ('%s','%s','%s','%s')",
+                    user.getName(),user.getPassword(),user.getEmail(),user.getPhoneNumber());
+            System.out.println(sql);
+            // 执行查询语句（DML）
+            resultSet = statement.executeUpdate(sql);
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+        return resultSet;
+    }
+
     public static void main(String[] args) throws Exception {
 //        通过 ClassLoader 加载 java.sql.DriverManager -> static 模块 {}
 //        DriverManager.setLogWriter(new PrintWriter(System.out));
@@ -60,7 +78,12 @@ public class DBConnectionManager {
 //        Driver driver = DriverManager.getDriver("jdbc:derby:/db/user-platform;create=true");
 //        Connection connection = driver.connect("jdbc:derby:/db/user-platform;create=true", new Properties());
 
+
+//        Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
         String databaseURL = "jdbc:derby:/db/user-platform;create=true";
+//        String databaseURL = "jdbc:derby:memory:D:/workspace/study/mercyblitz-projects/projects/stage-0/user-platform/db;create=true";
+//        String databaseURL = "jdbc:derby:memory:db/user-platform/db;create=true";
+//        String databaseURL = "jdbc:derby:Databases/UserPlatformDB";
         Connection connection = DriverManager.getConnection(databaseURL);
 
         Statement statement = connection.createStatement();

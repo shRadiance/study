@@ -83,6 +83,7 @@
         <welcome-file>/</welcome-file>
         <welcome-file>/index</welcome-file>
         <welcome-file>/index.jsp</welcome-file>
+<!--        <welcome-file>/login-form.jsp</welcome-file>-->
     </welcome-file-list>
 
 <!--    <resource-ref>-->

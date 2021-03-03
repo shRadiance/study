@@ -52,7 +52,6 @@
             <!-- Tomcat Maven 插件用于构建可执行 war -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
-<!--                <artifactId>tomcat7-maven-plugin</artifactId>-->
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.1</version>
                 <executions>
@@ -66,6 +65,8 @@
                         <configuration>
                             <!-- ServletContext 路径 -->
                             <path>/</path>
+<!--                            <enableNaming>true</enableNaming>-->
+<!--                            <contextFile>/webapp/WEB-INF/context.xml</contextFile>-->
                         </configuration>
                     </execution>
                 </executions>
